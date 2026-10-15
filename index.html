@@ -1,0 +1,223 @@
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Cg%3E%0A%3Crect%20x%3D%2244%22%20y%3D%229%22%20width%3D%2212%22%20height%3D%2246%22%20rx%3D%221.5%22%20fill%3D%22%23e9e3d5%22%2F%3E%0A%3Cg%20fill%3D%22%23c8c0ad%22%3E%3Crect%20x%3D%2246%22%20y%3D%2216%22%20width%3D%229.5%22%20height%3D%220.9%22%2F%3E%3Crect%20x%3D%2246%22%20y%3D%2224%22%20width%3D%229.5%22%20height%3D%220.9%22%2F%3E%3Crect%20x%3D%2246%22%20y%3D%2232%22%20width%3D%229.5%22%20height%3D%220.9%22%2F%3E%3Crect%20x%3D%2246%22%20y%3D%2240%22%20width%3D%229.5%22%20height%3D%220.9%22%2F%3E%3Crect%20x%3D%2246%22%20y%3D%2248%22%20width%3D%229.5%22%20height%3D%220.9%22%2F%3E%3C%2Fg%3E%0A%3Crect%20x%3D%228%22%20y%3D%226%22%20width%3D%2240%22%20height%3D%2252%22%20rx%3D%222.5%22%20fill%3D%22%231e2330%22%2F%3E%0A%3Crect%20x%3D%228%22%20y%3D%226%22%20width%3D%226%22%20height%3D%2252%22%20fill%3D%22%23171b26%22%2F%3E%0A%3Cg%20fill%3D%22%23c9a227%22%3E%3Crect%20x%3D%229%22%20y%3D%2218%22%20width%3D%224.5%22%20height%3D%221.5%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2230%22%20width%3D%224.5%22%20height%3D%221.5%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2242%22%20width%3D%224.5%22%20height%3D%221.5%22%2F%3E%3C%2Fg%3E%0A%3Crect%20x%3D%228.8%22%20y%3D%226.8%22%20width%3D%2238.4%22%20height%3D%2250.4%22%20rx%3D%222.2%22%20fill%3D%22none%22%20stroke%3D%22%23c9a227%22%20stroke-width%3D%221.6%22%2F%3E%0A%3Crect%20x%3D%2216.5%22%20y%3D%2211%22%20width%3D%2227.5%22%20height%3D%2242%22%20rx%3D%221.5%22%20fill%3D%22none%22%20stroke%3D%22%236d5c1f%22%20stroke-width%3D%220.9%22%2F%3E%0A%3Crect%20x%3D%2229%22%20y%3D%2217%22%20width%3D%224.5%22%20height%3D%2230%22%20fill%3D%22%23c9a227%22%2F%3E%0A%3Crect%20x%3D%2222.5%22%20y%3D%2226%22%20width%3D%2217.5%22%20height%3D%224.5%22%20fill%3D%22%23c9a227%22%2F%3E%0A%3Crect%20x%3D%2245%22%20y%3D%2210%22%20width%3D%223.5%22%20height%3D%2248%22%20fill%3D%22%23c8453c%22%2F%3E%0A%3Cpolygon%20points%3D%2245%2C58%2048.5%2C58%2046.75%2C62%22%20fill%3D%22%23c8453c%22%2F%3E%0A%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#10131a">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10131a;
+    --panel:#181c26;
+    --panel-2:#1e2330;
+    --rule:#2a3040;
+    --parchment:#e9e3d5;
+    --muted:#8f8a79;
+    --rubric:#c8453c;
+    --gold:#c9a227;
+    --display:"Cardo",Georgia,"Times New Roman",serif;
+    --body:"Spectral",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:var(--body);
+    font-weight:300;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 64px}
+
+  /* ---------- masthead ---------- */
+  .mast{padding:26px 0 18px;border-bottom:1px solid var(--rule)}
+  .mast-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .mast h1{
+    font-family:var(--display);font-weight:700;font-size:30px;line-height:1;margin:0;
+    letter-spacing:.02em;
+  }
+  .mast h1 .kjv{color:var(--gold);font-size:15px;letter-spacing:.22em;text-transform:uppercase;
+    display:block;font-family:var(--mono);font-weight:500;margin-bottom:9px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{display:block;width:46px;flex:0 0 46px}
+  .mark svg{display:block;width:100%;height:auto}
+  @media (max-width:860px){.mark{width:38px;flex-basis:38px}}
+  .count{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .count b{color:var(--gold);font-weight:500}
+
+  .searchbar{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .searchbar input{
+    flex:1 1 240px;min-width:0;background:var(--panel);border:1px solid var(--rule);
+    color:var(--parchment);font-family:var(--body);font-size:16px;padding:11px 14px;border-radius:2px;
+  }
+  .searchbar input::placeholder{color:#6d6857}
+  .searchbar input:focus{outline:2px solid var(--gold);outline-offset:-1px;border-color:transparent}
+  .btn{
+    background:transparent;border:1px solid var(--rule);color:var(--parchment);
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:11px 15px;border-radius:2px;cursor:pointer;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--gold);color:var(--gold)}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .btn.gold{border-color:var(--gold);color:var(--gold)}
+  .btn.gold:hover{background:var(--gold);color:var(--ink)}
+
+  /* ---------- letter rail ---------- */
+  .rail{display:flex;flex-wrap:wrap;gap:1px;margin:16px 0 0;padding-bottom:2px}
+  .rail button{
+    font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+    background:none;border:0;border-bottom:2px solid transparent;
+    color:#5f5b4d;padding:5px 7px;cursor:pointer;
+  }
+  .rail button.has{color:var(--parchment)}
+  .rail button.on{color:var(--rubric);border-bottom-color:var(--rubric)}
+  .rail button:focus-visible{outline:2px solid var(--gold)}
+
+  /* ---------- layout ---------- */
+  .cols{display:grid;grid-template-columns:290px 1fr;gap:34px;margin-top:26px;align-items:start}
+
+  .index{border-right:1px solid var(--rule);padding-right:22px;max-height:74vh;overflow-y:auto}
+  .index::-webkit-scrollbar{width:6px}
+  .index::-webkit-scrollbar-thumb{background:var(--rule)}
+  .idx-item{
+    display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(42,48,64,.55);
+    color:var(--parchment);font-family:var(--display);font-size:17px;padding:9px 4px;cursor:pointer;
+  }
+  .idx-item:hover{color:var(--gold)}
+  .idx-item.on{color:var(--rubric)}
+  .idx-item:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .idx-item .cat{
+    display:block;font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);margin-top:2px;
+  }
+  .idx-item .added{color:var(--gold)}
+  .idx-empty{color:var(--muted);font-size:14.5px;padding:14px 2px}
+
+  /* ---------- entry ---------- */
+  .entry{min-height:340px}
+  .entry-head{border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:22px}
+  .entry-head h2{
+    font-family:var(--display);font-weight:700;font-size:38px;line-height:1.05;margin:0 0 8px;
+    letter-spacing:.01em;
+  }
+  .tagline{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+    background:var(--gold);padding:3px 8px;border-radius:1px}
+  .tag.mine{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+
+  .orig{
+    font-family:var(--display);font-size:18px;font-style:italic;color:var(--gold);
+    margin:0 0 22px;line-height:1.5;
+  }
+
+  /* signature: marginal rubric references */
+  .body-grid{display:grid;grid-template-columns:1fr 190px;gap:30px;align-items:start}
+  .prose p{margin:0 0 18px;font-size:17.5px}
+  .sec-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:26px 0 8px;padding-top:14px;border-top:1px solid var(--rule);
+  }
+  .note{font-size:16.5px;color:#cfc8b7;border-left:2px solid var(--rubric);padding-left:16px;margin:0}
+
+  .margin{border-left:1px solid var(--rule);padding-left:16px;position:sticky;top:16px}
+  .margin .sec-label{margin-top:0;padding-top:0;border-top:0}
+  .refs{list-style:none;margin:0;padding:0}
+  .refs li{
+    font-family:var(--mono);font-size:12.5px;color:var(--rubric);letter-spacing:.02em;
+    padding:3px 0;line-height:1.45;
+  }
+  .links{margin-top:26px}
+  .chip{
+    display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    background:var(--panel-2);border:1px solid var(--rule);color:var(--parchment);
+    padding:5px 9px;margin:0 5px 6px 0;border-radius:2px;cursor:pointer;
+  }
+  .chip:hover{border-color:var(--gold);color:var(--gold)}
+  .chip.ghost{color:var(--muted);border-style:dashed}
+
+  /* ---------- states ---------- */
+  .placeholder{color:var(--muted);font-size:17px;max-width:46ch;padding-top:8px}
+  .placeholder .lead{color:var(--parchment);font-family:var(--display);font-size:22px;margin:0 0 12px}
+  .miss{border:1px solid var(--rule);background:var(--panel);padding:22px;border-radius:2px}
+  .miss h3{font-family:var(--display);font-size:24px;margin:0 0 8px;font-weight:700}
+  .miss p{margin:0 0 16px;color:var(--muted);font-size:16px}
+  .err{color:var(--rubric);font-family:var(--mono);font-size:12.5px;margin-top:12px}
+  .loading{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .dot{animation:blink 1.1s infinite}
+  .dot:nth-child(2){animation-delay:.15s}
+  .dot:nth-child(3){animation-delay:.3s}
+  @keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+  .back{display:none}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* ---------- mobile ---------- */
+  @media (max-width:860px){
+    .cols{grid-template-columns:1fr;gap:0}
+    .index{border-right:0;padding-right:0;max-height:none}
+    .body-grid{grid-template-columns:1fr;gap:0}
+    .margin{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:16px;margin-top:26px;position:static}
+    .entry-head h2{font-size:30px}
+    body.reading .index,body.reading .rail{display:none}
+    body.reading .back{display:inline-block;margin-bottom:18px}
+    body:not(.reading) .entry{display:none}
+    .wrap{padding-bottom:40px}
+  }
+
+  .short{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:6px;padding:14px 18px;margin:18px 0}
+  .short p{margin:.2em 0;font-size:18px;font-weight:400}
+  .src{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px}
+  .deep{border:1px solid var(--rule);border-radius:6px;padding:10px 18px;margin:14px 0;background:var(--panel-2)}
+  .deep summary{cursor:pointer;font-family:var(--display);font-size:20px;color:var(--gold);padding:4px 0}
+  .deep[open] summary{margin-bottom:8px;border-bottom:1px solid var(--rule)}
+  .muted{color:var(--muted);font-size:13px;font-family:var(--body)}
+  .root{border-top:1px dashed var(--rule);padding:10px 0}
+  .root p{margin:.3em 0}.lemma{font-size:22px;font-family:"SBL Hebrew","Ezra SIL","Times New Roman",serif;color:var(--parchment)}
+  .pron{color:var(--muted)}.outline{margin:.3em 0 .3em 1.2em;padding:0;font-size:14px}
+  .article{font-size:15px}.article p{margin:.5em 0}
+  a.vr{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold)}
+  .vpop{display:block;margin:6px 0 8px;padding:8px 12px;background:var(--ink);border-left:2px solid var(--gold);font-style:italic}
+  .vlist{list-style:none;padding:0;margin:0}.vlist li{padding:7px 0;border-bottom:1px solid var(--rule);font-size:15px}
+  .vlist b{font-family:var(--mono);font-size:12px;color:var(--gold);margin-right:6px}
+  mark{background:rgba(201,162,39,.25);color:inherit;padding:0 2px;border-radius:2px}
+  .notes textarea{width:100%;min-height:110px;background:var(--panel);color:var(--parchment);border:1px solid var(--rule);border-radius:6px;padding:10px;font:inherit;font-size:15px}
+  .chip.sn{font-family:var(--mono);font-size:12px}
+  @media (pointer:coarse){
+    .btn,.rail button,.chip{min-height:44px;min-width:44px}
+    .idx-item{padding-top:12px;padding-bottom:12px}
+    .rail{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:4px}
+    #q{font-size:18px;min-height:48px}
+    .deep summary{padding:12px 0}
+    a.vr{padding:4px 0}
+  }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="mast-row">
+      <div class="brand"><span class="mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g><rect x="44" y="9" width="12" height="46" rx="1.5" fill="#e9e3d5"/><g fill="#c8c0ad"><rect x="46" y="16" width="9.5" height="0.9"/><rect x="46" y="24" width="9.5" height="0.9"/><rect x="46" y="32" width="9.5" height="0.9"/><rect x="46" y="40" width="9.5" height="0.9"/><rect x="46" y="48" width="9.5" height="0.9"/></g><rect x="8" y="6" width="40" height="52" rx="2.5" fill="#1e2330"/><rect x="8" y="6" width="6" height="52" fill="#171b26"/><g fill="#c9a227"><rect x="9" y="18" width="4.5" height="1.5"/><rect x="9" y="30" width="4.5" height="1.5"/><rect x="9" y="42" width="4.5" height="1.5"/></g><rect x="8.8" y="6.8" width="38.4" height="50.4" rx="2.2" fill="none" stroke="#c9a227" stroke-width="1.6"/><rect x="16.5" y="11" width="27.5" height="42" rx="1.5" fill="none" stroke="#6d5c1f" stroke-width="0.9"/><rect x="29" y="17" width="4.5" height="30" fill="#c9a227"/><rect x="22.5" y="26" width="17.5" height="4.5" fill="#c9a227"/><rect x="45" y="10" width="3.5" height="48" fill="#c8453c"/><polygon points="45,58 48.5,58 46.75,62" fill="#c8453c"/></g></svg></span><h1><span class="kjv">King James Version</span>Bible Dictionary</h1></div>
+      <div class="count"><b id="cCore">0</b> words &nbsp;·&nbsp; <b id="cMine">0</b> notes</div>
+    </div>
+    <div class="searchbar">
+      <input id="q" type="search" placeholder="Search any Bible word, name, place, or Strong's number (e.g. H2617)" autocomplete="off" aria-label="Search entries">
+      <button class="btn" id="rand">Open at random</button>
+      <button class="btn" id="exp">Export my notes</button>
+    </div>
+    <nav class="rail" id="rail" aria-label="Filter by letter"></nav>
+  </header>
+
+  <div class="cols">
+    <div class="index" id="index"></div>
+    <main class="entry" id="entry" aria-live="polite"></main>
+  </div>
+</div>
+
+<script src="data/books.js"></script>
+<script src="data/core.js"></script>
+<script src="data/index.js"></script>
+<script src="app.js"></script>

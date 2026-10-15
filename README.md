@@ -1,0 +1,2 @@
+# Bible Dictionary (KJV)
+Offline, installable Bible dictionary. Content is public domain: KJV 1769 with Strong's numbers (CrossWire/eBible.org), Strong's Hebrew (OpenScriptures XML, rights: Public Domain) and Greek (Ulrik Petersen XML, "Public Domain -- Copy Freely") dictionaries, Easton's Bible Dictionary (1897), Smith's Bible Dictionary (1884), Hitchcock's Bible Names (CrossWire modules, DistributionLicense=Public Domain).
