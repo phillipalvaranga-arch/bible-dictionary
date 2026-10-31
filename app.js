@@ -28,6 +28,19 @@ function load(name,global){
   return loaded[name]=new Promise((ok,bad)=>{const s=document.createElement("script");s.src="data/"+name+".js";s.onload=()=>ok(window[global]);s.onerror=bad;document.head.appendChild(s);});
 }
 const loadAll=()=>Promise.all([load("dicts","BD_DICT"),load("strongs","BD_STRONGS"),load("kjv","BD_KJV")]);
+/* ---------- my in-depth meanings ---------- */
+const DK="bibledict:deep";
+function getDeep(){try{return JSON.parse(localStorage.getItem(DK))||{}}catch(e){return {}}}
+function setDeep(k,v){const o=getDeep();if(v.trim())o[k]=v;else delete o[k];try{localStorage.setItem(DK,JSON.stringify(o))}catch(e){}}
+function myDeepHTML(k){const t=getDeep()[k]||"";
+  return `<div class="sec-label">My in-depth meaning</div>`+(t?`<div class="article mydeep">${esc(t).replace(/\n/g,"<br>")}</div><p><button class="btn" id="mdEdit">✎ Edit my in-depth meaning</button></p>`:`<p><button class="btn gold" id="mdEdit">+ Add my in-depth meaning</button></p>`);}
+function wireMyDeep(k){const b=el("mdEdit");if(!b)return;b.onclick=()=>{const box=el("myDeep");const t=getDeep()[k]||"";
+  box.innerHTML=`<div class="sec-label">My in-depth meaning</div><textarea id="mdText" placeholder="Write your own in-depth meaning for “${esc(disp(k))}” — saved on this device.">${esc(t)}</textarea><p><button class="btn gold" id="mdSave">Save</button> <button class="btn" id="mdCancel">Cancel</button>${t?' <button class="btn" id="mdDel">Delete</button>':""}</p>`;
+  const done=()=>{box.innerHTML=myDeepHTML(k);wireMyDeep(k);};
+  el("mdSave").onclick=()=>{setDeep(k,el("mdText").value);done();};
+  el("mdCancel").onclick=done;
+  if(el("mdDel"))el("mdDel").onclick=()=>{if(confirm("Delete your in-depth meaning?")){setDeep(k,"");done();}};
+  el("mdText").focus();};}
 /* ---------- notes ---------- */
 const NK="bibledict:notes:";
 const getNote=k=>{try{return localStorage.getItem(NK+k)||""}catch(e){return ""}};
@@ -111,13 +124,14 @@ async function drawEntry(k){
    <div class="entry-head"><h2>${esc(disp(k))}</h2><div class="tagline">${c?(c.u?'<span class="tag mine">✎ My word</span>':'<span class="tag mine">★ Featured</span>'):""}<span class="tag">${esc(catOf(k))}</span>${e&&e[3]?`<span class="tag">KJV: ${e[3].toLocaleString()}×</span>`:""}</div>${c&&c.u?`<div class="word-actions"><button class="btn" id="wEdit">✎ Edit</button> <button class="btn" id="wDel">Delete</button></div>`:""}</div>
    ${c&&c.o?`<p class="orig">${esc(c.o)}</p>`:""}
    <section class="short"><div class="sec-label">Short answer</div><p>${esc(sh.t)}</p><div class="src">Source: ${esc(sh.src)}</div></section>
-   <details class="deep" id="deep"><summary>In-depth <span class="muted">— Hebrew/Greek roots, full dictionary articles, KJV verses</span></summary><div id="deepBody"><p class="loading">Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></p></div></details>
+   <details class="deep" id="deep"><summary>In-depth <span class="muted">— Hebrew/Greek roots, full dictionary articles, KJV verses</span></summary><div id="myDeep">${myDeepHTML(k)}</div><div id="deepBody"><p class="loading">Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></p></div></details>
    <section class="notes"><div class="sec-label">My notes</div><textarea id="note" placeholder="Write your own notes on “${esc(disp(k))}” — saved on this computer.">${esc(getNote(k))}</textarea><div class="src" id="nsaved"></div></section>`;
   el("back").onclick=()=>{document.body.classList.remove("reading");window.scrollTo(0,0)};
   if(c&&c.u){const we=el("wEdit"),wd=el("wDel");
     if(we)we.onclick=()=>openWordModal(k);
     if(wd)wd.onclick=()=>{if(confirm("Delete “"+disp(k)+"” from your added words?")){const words=getWords();delete words[k];saveWords(words);syncUserWords();drawStart();drawRail();drawIndex();updateCounts();}};}
   el("note").oninput=ev=>{setNote(k,ev.target.value);el("nsaved").textContent="Saved";};
+  wireMyDeep(k);
   drawIndex(); window.scrollTo(0,0);
   el("deep").addEventListener("toggle",()=>{try{localStorage.setItem("bibledict:deepOpen",el("deep").open?"1":"0")}catch(x){}});
   try{ if(localStorage.getItem("bibledict:deepOpen")==="1") el("deep").open=true; }catch(x){}
@@ -136,7 +150,7 @@ async function drawEntry(k){
   refs=refs.concat((e?e[5]:[]).filter(r=>!refs.includes(r)));
   if(refs.length) parts.push(`<div class="sec-label">Scripture (KJV)${e&&e[3]>refs.length?` <span class="muted">— ${refs.length} of ${e[3].toLocaleString()} occurrences</span>`:""}</div>`+versesHTML(refs.slice(0,18),c?"":k));
   if(c&&c.s&&c.s.length) parts.push(`<div class="sec-label">See also</div><div>${c.s.map(x=>`<button class="chip" data-h="${esc(x.toLowerCase())}">${esc(x)}</button>`).join("")}</div>`);
-  if(!parts.length) parts.push(`<p class="muted">No further detail in the public-domain sources for this word.</p>`);
+  if(!parts.length&&!getDeep()[k]) parts.push(`<p class="muted">No further detail in the public-domain sources for this word.</p>`);
   el("deepBody").innerHTML=parts.join("");
   wireDeep();
 }
