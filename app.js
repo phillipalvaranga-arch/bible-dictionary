@@ -221,6 +221,13 @@ setTimeout(()=>loadAll().catch(()=>{}),400);
 window.BD_READY=performance.now();
 
 /* ---------- add-word modal ---------- */
+function normWord(x){return String(x||"").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu,"").replace(/[\s\u2019']+/g," ").trim();}
+let _bNorm=null;
+function findExisting(nk){
+  if(!_bNorm){_bNorm=new Map();BUILTIN_KEYS.forEach(k=>{const n=normWord(k);if(n&&!_bNorm.has(n))_bNorm.set(n,k);});}
+  if(_bNorm.has(nk))return _bNorm.get(nk);
+  const w=getWords();for(const k in w){if(normWord(w[k].h||k)===nk)return k;}
+  return null;}
 function updateCounts(){el("cCore").textContent=KEYS.length.toLocaleString();const n=Object.keys(getWords()).length;const a=el("cAdded");if(a)a.textContent=n;}
 const modal=el("wordModal");
 let editKey=null;
@@ -244,9 +251,13 @@ el("wmSave").onclick=()=>{
   const h=el("wmWord").value.trim(), d=el("wmDef").value.trim(), refRaw=el("wmRef").value.trim();
   if(!h){el("wmErr").textContent="Please enter a word or term.";return;}
   if(!d){el("wmErr").textContent="Please enter a definition.";return;}
-  const k=h.toLowerCase();
-  if(k!==editKey&&BUILTIN_KEYS.has(k)){el("wmErr").textContent="“"+h+"” is already in the dictionary — just search for it.";return;}
-  if(k!==editKey&&getWords()[k]){el("wmErr").textContent="You already added “"+h+"”. Open it to edit.";return;}
+  const k=h.toLowerCase(), nk=normWord(h);
+  if(!nk){el("wmErr").textContent="Please enter a word or term.";return;}
+  const ex=findExisting(nk);
+  if(ex&&ex!==editKey){
+    el("wmErr").innerHTML="“"+esc(h)+"” is already in the dictionary"+(UWORDS[ex]?" (one of your added words)":"")+". Only new words can be added. <a href=\"#\" id=\"wmJump\">Open “"+esc(disp(ex))+"” →</a>";
+    el("wmJump").onclick=ev=>{ev.preventDefault();closeWordModal();drawEntry(ex);};
+    return;}
   const refs=refRaw?refRaw.split(/[,;\n]/).map(x=>x.trim()).filter(Boolean):[];
   const words=getWords();
   if(editKey&&editKey!==k)delete words[editKey];
@@ -261,7 +272,7 @@ el("wmDelete").onclick=()=>{
   syncUserWords(); closeWordModal(); drawStart(); drawRail(); drawIndex(); updateCounts();
 };
 function exportWords(){const w=getWords();if(!Object.keys(w).length){alert("You haven't added any words yet.");return;}const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(w,null,2)],{type:"application/json"}));a.download="bible-dictionary-my-words.json";a.click();}
-function importWords(file){const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);const w=getWords();let n=0;Object.keys(data).forEach(k0=>{const it=data[k0]||{};const h=it.h||k0;const key=String(h).toLowerCase();if(!it.d||BUILTIN_KEYS.has(key))return;w[key]={h:String(h),d:String(it.d),r:Array.isArray(it.r)?it.r:[]};n++;});saveWords(w);syncUserWords();drawRail();drawIndex();updateCounts();alert("Imported "+n+" word"+(n===1?"":"s")+".");}catch(e){alert("That file didn't look like a valid Bible Dictionary export.");}};r.readAsText(file);}
+function importWords(file){const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);const w=getWords();let n=0;Object.keys(data).forEach(k0=>{const it=data[k0]||{};const h=it.h||k0;const key=String(h).trim().toLowerCase();if(!it.d||!normWord(h)||findExisting(normWord(h)))return;w[key]={h:String(h),d:String(it.d),r:Array.isArray(it.r)?it.r:[]};n++;});saveWords(w);syncUserWords();drawRail();drawIndex();updateCounts();alert("Imported "+n+" word"+(n===1?"":"s")+".");}catch(e){alert("That file didn't look like a valid Bible Dictionary export.");}};r.readAsText(file);}
 el("wmExport").onclick=exportWords;
 el("wmImport").onclick=()=>el("wmImportFile").click();
 el("wmImportFile").onchange=ev=>{if(ev.target.files[0])importWords(ev.target.files[0]);ev.target.value="";};
