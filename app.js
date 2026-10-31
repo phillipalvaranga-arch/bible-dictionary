@@ -239,8 +239,17 @@ function openWordModal(k){
   el("wmRef").value=w&&w.r?w.r.join(", "):"";
   el("wmErr").textContent="";
   el("wmDelete").style.display=w?"inline-block":"none";
-  modal.hidden=false; setTimeout(()=>el("wmWord").focus(),30);
+  modal.hidden=false; checkDup(); setTimeout(()=>el("wmWord").focus(),30);
 }
+function checkDup(){
+  const sv=el("wmSave"),h=el("wmWord").value.trim(),nk=normWord(h);
+  const ex=nk?findExisting(nk):null;
+  if(ex&&ex!==editKey){sv.disabled=true;sv.classList.add("dis");
+    el("wmErr").innerHTML="That word is already in the dictionary. <a href=\"#\" id=\"wmJump\">Open “"+esc(disp(ex))+"” →</a>";
+    el("wmJump").onclick=ev=>{ev.preventDefault();closeWordModal();drawEntry(ex);};}
+  else{sv.disabled=false;sv.classList.remove("dis");if(el("wmErr").querySelector("#wmJump")||/already in the dictionary/.test(el("wmErr").textContent))el("wmErr").textContent="";}
+}
+el("wmWord").addEventListener("input",checkDup);
 function closeWordModal(){modal.hidden=true;editKey=null;}
 el("addWord").onclick=()=>openWordModal(null);
 el("wmCancel").onclick=closeWordModal;
