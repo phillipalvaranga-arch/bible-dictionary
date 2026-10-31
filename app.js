@@ -33,7 +33,16 @@ const DK="bibledict:deep";
 function getDeep(){try{return JSON.parse(localStorage.getItem(DK))||{}}catch(e){return {}}}
 function setDeep(k,v){const o=getDeep();if(v.trim())o[k]=v;else delete o[k];try{localStorage.setItem(DK,JSON.stringify(o))}catch(e){}}
 function myDeepHTML(k){const t=getDeep()[k]||"";
-  return `<div class="sec-label">My in-depth meaning</div>`+(t?`<div class="article mydeep">${esc(t).replace(/\n/g,"<br>")}</div><p><button class="btn" id="mdEdit">✎ Edit my in-depth meaning</button></p>`:`<p><button class="btn gold" id="mdEdit">+ Add my in-depth meaning</button></p>`);}
+  if(t){
+    return `<div class="sec-label">My in-depth meaning</div>`+
+      `<div class="article mydeep">${esc(t).replace(/\n/g,"<br>")}</div>`+
+      `<p><button class="btn" id="mdEdit">✎ Edit my in-depth meaning</button></p>`+
+      `<p><button class="btn gold dis" id="mdAdd" disabled>+ Add my in-depth meaning</button></p>`+
+      `<p class="hint" id="mdAddNote">You already have an in-depth meaning for this word — use Edit (or Delete) instead.</p>`;
+  }
+  return `<div class="sec-label">My in-depth meaning</div>`+
+    `<p><button class="btn gold" id="mdEdit">+ Add my in-depth meaning</button></p>`;
+}
 function wireMyDeep(k){const b=el("mdEdit");if(!b)return;b.onclick=()=>{const box=el("myDeep");const t=getDeep()[k]||"";
   box.innerHTML=`<div class="sec-label">My in-depth meaning</div><textarea id="mdText" placeholder="Write your own in-depth meaning for “${esc(disp(k))}” — saved on this device.">${esc(t)}</textarea><p><button class="btn gold" id="mdSave">Save</button> <button class="btn" id="mdCancel">Cancel</button>${t?' <button class="btn" id="mdDel">Delete</button>':""}</p>`;
   const done=()=>{box.innerHTML=myDeepHTML(k);wireMyDeep(k);};
